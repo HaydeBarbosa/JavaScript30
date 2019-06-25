@@ -57,17 +57,45 @@
     }
 
     .hand {
-      width: 50%;
-      height: 6px;
-      background: black;
-      position: absolute;
-      top: 50%;
+      	width: 50%;
+      	height: 6px;
+	    background: black;
+	    position: absolute;
+	    top: 50%;
+        transform: rotate(90deg);
+    	transform-origin: right;
+    }
+
+    .min-hand {
+      	height: 8px;
+    }
+
+    .hour-hand {
+      	height: 12px;
     }
 
   </style>
 
+
+
   <script>
 
+    const handSeconds = document.querySelector(".second-hand");
+    const handMinutes = document.querySelector(".min-hand");
+    const handHours = document.querySelector(".hour-hand");
+
+  	function setHands(){
+  		const now = new Date();
+  		const degSec = (now.getSeconds() * 6)+90;
+  		const degMin = (now.getMinutes() * 6)+90;
+  		const degHou = (now.getHours() * 30)+90;
+
+  		handSeconds.style.transform = `rotate(${degSec}deg)`;
+  		handMinutes.style.transform = `rotate(${degMin}deg)`;
+  		handHours.style.transform = `rotate(${degHou}deg)`;
+  	}
+
+  	window.setInterval(setHands, 1000);
 
   </script>
 </body>
